@@ -1,0 +1,65 @@
+:root {
+    font-family: monospace;
+}
+
+@keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+@keyframes float {
+    0% {
+        transform: translateY(0rem);
+    }
+    50% {
+        transform: translateY(-1rem);
+    }
+    100% {
+        transform: translateY(0rem);
+    }
+}
+
+body {
+    background-color: black;
+}
+
+h1 {
+    color: white;
+}
+
+#main-star {
+    height: 15rem;
+    width: 15rem;
+    animation: rotate 10000ms linear infinite;
+    filter: drop-shadow(0 0 0px transparent) brightness(1);
+    transition: all 0.3s ease-in;
+}
+
+#main-star:hover {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.7)) brightness(1.1);
+    transform: scale(1.15);
+    transition: all 0.3s ease-in-out;
+}
+
+.star {
+    height: 5rem;
+    width: 5rem;
+}
+
+
+#aligned-text {
+    filter: drop-shadow(0 0 10px rgb(255, 255, 255)) brightness(1.1);
+    animation: float 2s ease-in-out infinite
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
