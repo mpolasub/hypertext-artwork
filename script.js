@@ -1,5 +1,5 @@
 const homeLink = document.getElementById('aligned-text');
-const star = document.getElementById('star1');
+const star1 = document.getElementById('star1');
 const star2 = document.getElementById('star2');
 const star3 = document.getElementById('star3');
 const star4 = document.getElementById('star4');
@@ -17,9 +17,9 @@ window.addEventListener('resize', function() {
 
 
 homeLink.addEventListener('mouseenter', () => {
-    star.style.filter = 'drop-shadow(0 0 10px rgba(255, 255, 0, 0.7)) brightness(1.1)';
-    star.style.paddingLeft = '70%';
-    star.style.transition = 'all 0.3s ease-in-out'
+    star1.style.filter = 'drop-shadow(0 0 10px rgba(255, 255, 0, 0.7)) brightness(1.1)';
+    star1.style.paddingLeft = '70%';
+    star1.style.transition = 'all 0.3s ease-in-out'
 
     star2.style.filter = 'drop-shadow(0 0 10px rgba(255, 255, 0, 0.7)) brightness(1.1)';
     star2.style.paddingLeft = '60%'
@@ -43,9 +43,9 @@ homeLink.addEventListener('mouseenter', () => {
 });
 
 homeLink.addEventListener('mouseleave', () => {
-    star.style.filter = 'drop-shadow(0 0 0px transparent) brightness(1)';
-    star.style.paddingLeft = '5%';
-    star.style.transition = 'all 0.3s ease-in-out';
+    star1.style.filter = 'drop-shadow(0 0 0px transparent) brightness(1)';
+    star1.style.paddingLeft = '5%';
+    star1.style.transition = 'all 0.3s ease-in-out';
 
     star2.style.filter = 'drop-shadow(0 0 0px transparent) brightness(1)';
     star2.style.paddingLeft = '72%';
@@ -73,4 +73,6 @@ homeLink.addEventListener('mouseleave', () => {
     starContainer.marginLeft = '0%';
 
 });
+
+
 

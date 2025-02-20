@@ -6,130 +6,240 @@
     <title>Matthew Polasub Hypertext Artwork</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-    .container {
-        width: 90vw;
-        height: 90vh;
-        position: relative;
-        overflow: hidden;
-    }
+        :root {  
+        --purple: rgb(255, 255, 255);
+        --violet: rgb(255, 251, 224);
+        --pink: rgb(244, 217, 143);
+        }
+        .container {
+            width: 95vw;
+            height: 95vh;
+            position: relative;
+            overflow: hidden;
+        }
 
-    #movingImage {
-        width: 15rem;
-        height: 15rem;
+        #movingImage {
+            width: 15rem;
+            height: 15rem;
+            position: absolute;
+            cursor: pointer;
+            /* Center the image initially */
+            left: 45%;  /* 50% - (image width/2) */
+            top: 40%;   /* 50% - (image height/2) */
+            transition: transform 1s ease;
+        }
+
+        #earf {
+            width: 15rem;
+            height: 15rem;
+            position: absolute;
+            left: calc(45% + 22.5rem);
+            top: 40%;
+            animation: float 2.1s ease-in-out infinite;
+        }
+
+        #visitMoon {
+            width: 15rem;
+            height: 15rem;
+            position: absolute;
+            left: calc(45% - 12.5rem);
+            top: calc(40% + 16rem);
+            animation: float 2s ease-in-out infinite;
+
+        }
+
+        #sat {
+            width: 15rem;
+            height: 15rem;
+            position: absolute;
+            /* Calculate exact position considering the element width */
+            left: calc(40% - 15rem * 0.866); /* 45% - width * 0.866 for -86.6% */
+            top: calc(36% - 7.5rem);         /* 40% - height/2 for -50% */
+            animation: float 1.9s ease-in-out infinite;
+        }
+
+        #al1 {
+            width: 15rem;
+            height: 15rem;
+            position: absolute;
+        }
+
+        #al2 {
+            width: 15rem;
+            height: 15rem;
+            position: absolute;
+        }
+
+
+        @keyframes moveCircle {
+        /* Start at center */
+        0% {
+            transform: translate(0, 0);
+        }
+        /* Move to right edge of circle */
+        5% {
+            transform: translate(50%, 0);
+        }
+        10% {
+            transform: translate(100%, 0);
+        }
+        /* Start circular motion clockwise */
+        15% {
+            transform: translate(96.6%, 25.8%);
+        }
+        20% {
+            transform: translate(86.6%, 50%);
+        }
+        25% {
+            transform: translate(70.7%, 70.7%);
+        }
+        30% {
+            transform: translate(50%, 86.6%);
+        }
+        35% {
+            transform: translate(25.8%, 96.6%);
+        }
+        40% {
+            transform: translate(0, 100%);
+        }
+        45% {
+            transform: translate(-25.8%, 100%);
+        }
+        50% {
+            transform: translate(-50%, 100%);
+        }
+        55% {
+            transform: translate(-70.7%, 70.7%);
+        }
+        60% {
+            transform: translate(-86.6%, 50%);
+        }
+        65% {
+            transform: translate(-96.6%, 25.8%);
+        }
+        70% {
+            transform: translate(-100%, 0);
+        }
+        /* Stop at 75% of circle (9 o'clock position) */
+        75% {
+            transform: translate(-96.6%, -25.8%);
+        }
+        80% {
+            transform: translate(-86.6%, -50%);
+        }
+        /* Return to center */
+        100% {
+            transform: translate(0, 0);
+        }
+        }
+
+        .moving {
+            animation: moveCircle 10s linear;
+            animation-play-state: running;
+        }
+
+        .return {
+            transform: translate(0, 0) !important;
+        }
+
+        .magic-star {
+        --size: clamp(20px, 1.5vw, 30px);
+        --star-left: 50%;
+        --star-top: 50%;
+        
+        animation: scale 1400ms ease forwards;
+        display: block;
+        height: var(--size);
+        left: var(--star-left);
         position: absolute;
-        cursor: pointer;
-        /* Center the image initially */
-        left: 45%;  /* 50% - (image width/2) */
-        top: 40%;   /* 50% - (image height/2) */
-        transition: transform 1s ease;
-    }
+        top: var(--star-top);
+        width: var(--size);
+        }
 
-    @keyframes moveCircle {
-      /* Start at center */
-      0% {
-        transform: translate(0, 0);
-      }
-      /* Move to right edge of circle */
-      5% {
-        transform: translate(50%, 0);
-      }
-      10% {
-        transform: translate(100%, 0);
-      }
-      /* Start circular motion clockwise */
-      15% {
-        transform: translate(96.6%, 25.8%);
-      }
-      20% {
-        transform: translate(86.6%, 50%);
-      }
-      25% {
-        transform: translate(70.7%, 70.7%);
-      }
-      30% {
-        transform: translate(50%, 86.6%);
-      }
-      35% {
-        transform: translate(25.8%, 96.6%);
-      }
-      40% {
-        transform: translate(0, 100%);
-      }
-      45% {
-        transform: translate(-25.8%, 96.6%);
-      }
-      50% {
-        transform: translate(-50%, 86.6%);
-      }
-      55% {
-        transform: translate(-70.7%, 70.7%);
-      }
-      60% {
-        transform: translate(-86.6%, 50%);
-      }
-      65% {
-        transform: translate(-96.6%, 25.8%);
-      }
-      70% {
-        transform: translate(-100%, 0);
-      }
-      /* Stop at 75% of circle (9 o'clock position) */
-      75% {
-        transform: translate(-96.6%, -25.8%);
-      }
-      80% {
-        transform: translate(-86.6%, -50%);
-      }
-      /* Return to center */
-      100% {
-        transform: translate(0, 0);
-      }
-    }
+        .magic-star > svg {
+        animation: rotate 2000ms linear infinite;
+        display: block;
+        opacity: 0.7;
+        }
 
-    .moving {
-        animation: moveCircle 10s linear;
-        animation-play-state: running;
-    }
-
-    .return {
-        transform: translate(0, 0) !important;
-    }
+        .magic-star > svg > path {
+        fill: var(--violet);
+        }
     </style>
 </head>
 <body>
     <div class="container">
-    <img id="movingImage" src="assets/naut.png" alt="Moving image">
+        <h1 style="text-align: center; padding-top: 2%;">MOM, IM IN SPACE AND IM SCARED OF ALIENS</h1>
+
+        <span class="magic-star">
+            <svg viewBox="0 0 512 512">
+              <path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z" />
+            </svg>
+          </span>
+          <span class="magic-star">
+            <svg viewBox="0 0 512 512">
+              <path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z" />
+            </svg>
+          </span>
+          <span class="magic-star">
+            <svg viewBox="0 0 512 512">
+              <path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z" />
+            </svg>
+          </span>
     <img id="visitMoon" src="assets/MOOON.png">
     <img id="sat" src="assets/satellite.png">
     <img id="earf" src="assets/earf.png">
-
+    <img id="movingImage" src="assets/naut.png" alt="Moving image">
     </div>
 
     <script>
     const image = document.getElementById('movingImage');
-    let leaveTimeout;
-    
-    image.addEventListener('mouseenter', () => {
+        let leaveTimeout;
+        
+        image.addEventListener('mouseenter', () => {
         if (leaveTimeout) {
-        clearTimeout(leaveTimeout);
-        leaveTimeout = null;
+            clearTimeout(leaveTimeout);
+            leaveTimeout = null;
         }
         
         image.classList.remove('return');
         image.classList.add('moving');
         
         image.addEventListener('animationend', () => {
-        const computedStyle = window.getComputedStyle(image);
-        image.style.transform = computedStyle.transform;
-        image.classList.remove('moving');
+            const computedStyle = window.getComputedStyle(image);
+            image.style.transform = computedStyle.transform;
+            image.classList.remove('moving');
         }, { once: true });
-    });
+        });
 
-    image.addEventListener('mouseleave', () => {
+        image.addEventListener('mouseleave', () => {
         leaveTimeout = setTimeout(() => {
-        image.classList.add('return');
+            image.classList.add('return');
         }, 5000);
-    });
+        });
+
+        // Star animation
+        let index = 0,
+            interval = 1000;
+
+        const rand = (min, max) => 
+        Math.floor(Math.random() * (max - min + 1)) + min;
+
+        const animate = star => {
+        star.style.setProperty("--star-left", `${rand(-10, 100)}%`);
+        star.style.setProperty("--star-top", `${rand(-40, 80)}%`);
+
+        star.style.animation = "none";
+        star.offsetHeight;
+        star.style.animation = "";
+        }
+
+        for(const star of document.getElementsByClassName("magic-star")) {
+        setTimeout(() => {
+            animate(star);
+            setInterval(() => animate(star), 2000);
+        }, index++ * (interval / 3));
+        }
     </script>
 </body>
 </html>
