@@ -58,16 +58,22 @@
             animation: float 1.9s ease-in-out infinite;
         }
 
-        #al1 {
-            width: 15rem;
-            height: 15rem;
+        #crossingImage {
+            width: 10rem;
+            height: 10rem;
             position: absolute;
+            top: 20%;  
+            left: 100%; /* Start outside the right edge */
+            transition: transform 1s ease;
         }
 
         #al2 {
-            width: 15rem;
-            height: 15rem;
+            width: 10rem;
+            height: 10rem;
             position: absolute;
+            top: 70%;  
+            left: -100%; /* Start outside the left  */
+            transition: transform 1s ease;
         }
 
 
@@ -133,9 +139,35 @@
         }
         }
 
+        @keyframes crossScreen {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-1200%); /* Move 2x container width to ensure it goes fully off-screen */
+            }
+        }
+
+        @keyframes crossScreen2 {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(2000%); /* Move 2x container width to ensure it goes fully off-screen */
+            }
+        }
+
         .moving {
             animation: moveCircle 10s linear;
             animation-play-state: running;
+        }
+
+        .crossing {
+            animation: crossScreen 2s linear;
+        }
+
+        .crossing2 {
+            animation: crossScreen2 3s linear;
         }
 
         .return {
@@ -190,10 +222,16 @@
     <img id="sat" src="assets/satellite.png">
     <img id="earf" src="assets/earf.png">
     <img id="movingImage" src="assets/naut.png" alt="Moving image">
+    <img id="crossingImage" src="assets/ufo.png" alt="Crossing image">
+    <img id="al2" src="assets/ufo.png" alt="Crossing image">
+
     </div>
 
     <script>
-    const image = document.getElementById('movingImage');
+        const image = document.getElementById('movingImage');
+        const crossingImage = document.getElementById('crossingImage');
+        const crossingImage2 = document.getElementById('al2');
+
         let leaveTimeout;
         
         image.addEventListener('mouseenter', () => {
@@ -205,11 +243,29 @@
         image.classList.remove('return');
         image.classList.add('moving');
         
+        crossingImage.classList.add('crossing');
+        crossingImage2.classList.add('crossing2');
+
+
         image.addEventListener('animationend', () => {
             const computedStyle = window.getComputedStyle(image);
             image.style.transform = computedStyle.transform;
             image.classList.remove('moving');
         }, { once: true });
+        });
+
+        crossingImage.addEventListener('animationend', () => {
+        crossingImage.classList.remove('crossing');
+        // Reset position for next animation
+        crossingImage.style.left = '100%';
+        crossingImage.style.transform = 'translateX(0)';
+        });
+
+        crossingImage2.addEventListener('animationend', () => {
+        crossingImage2.classList.remove('crossing2');
+        // Reset position for next animation
+        crossingImage2.style.left = '-100%';
+        crossingImage2.style.transform = 'translateX(0)';
         });
 
         image.addEventListener('mouseleave', () => {
