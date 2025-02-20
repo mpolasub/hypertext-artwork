@@ -32,6 +32,11 @@ h1 {
     color: white;
 }
 
+a {
+    text-decoration: none;
+
+}
+
 #main-star {
     height: 15rem;
     width: 15rem;
@@ -54,8 +59,33 @@ h1 {
 
 #aligned-text {
     filter: drop-shadow(0 0 10px rgb(255, 255, 255)) brightness(1.1);
+    font-size: 3rem;
+    animation: float 3s ease-in-out infinite
+}
+
+#star1 {
+    padding-left: 5%;
     animation: float 2s ease-in-out infinite
 }
+
+#star2 {
+    padding-left: 72%;
+    animation: float 2.3s ease-in-out infinite
+}
+
+#star3 {
+    padding-left: 18%;
+    animation: float 2.1s ease-in-out infinite
+}
+#star4 {
+    padding-left: 34%;
+    animation: float 2.2s ease-in-out infinite
+}
+#star5 {
+    padding-left: 89%;
+    animation: float 1.9s ease-in-out infinite
+}
+
 
 .center {
     display: flex;
